@@ -1,0 +1,43 @@
+<%- include('../parciales/cabecera', { titulo: vm.titulo }) %>
+<%- include('../parciales/errores', { errores: vm.errores }) %>
+
+<%# Paso 1: elegir fecha y turno (petición GET) %>
+<form method="get" action="/reservas/nueva" class="filtros">
+  <label for="fecha">Fecha</label>
+  <input id="fecha" name="fecha" type="date" min="<%= vm.hoy %>" value="<%= vm.valores.fecha %>" required>
+
+  <label for="turno">Turno</label>
+  <select id="turno" name="turno">
+    <% for (const opcion of vm.turnos) { %>
+      <option value="<%= opcion.valor %>" <%= opcion.valor === vm.valores.turno ? 'selected' : '' %>>
+        <%= opcion.texto %>
+      </option>
+    <% } %>
+  </select>
+  <button type="submit">Ver equipos disponibles</button>
+</form>
+
+<%# Paso 2: reservar uno de los equipos disponibles (POST) %>
+<% if (vm.fechaTurnoValidos) { %>
+  <% if (vm.equipos.length === 0) { %>
+    <p>No hay equipos disponibles para esa fecha y turno.</p>
+  <% } else { %>
+    <form method="post" action="/reservas">
+      <input type="hidden" name="_csrf" value="<%= vm.csrfToken %>">
+      <input type="hidden" name="fecha" value="<%= vm.valores.fecha %>">
+      <input type="hidden" name="turno" value="<%= vm.valores.turno %>">
+
+      <label for="equipoId">Equipo disponible</label>
+      <select id="equipoId" name="equipoId" required>
+        <option value="">Selecciona un equipo</option>
+        <% for (const opcion of vm.equipos) { %>
+          <option value="<%= opcion.valor %>" <%= opcion.valor === vm.valores.equipoId ? 'selected' : '' %>>
+            <%= opcion.texto %>
+          </option>
+        <% } %>
+      </select>
+      <button type="submit">Reservar</button>
+    </form>
+  <% } %>
+<% } %>
+<%- include('../parciales/pie') %>

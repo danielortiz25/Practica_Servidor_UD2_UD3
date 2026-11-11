@@ -1,0 +1,35 @@
+<%# PARCIAL: cabecera y menú. Usa usuarioActual y csrfToken de res.locals %>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= titulo %> · Reserva de equipos</title>
+  <link rel="stylesheet" href="/estilos.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a href="/" class="marca">Reserva de equipos</a>
+    <a href="/equipos">Equipos</a>
+    <% if (locals.usuarioActual) { %>
+      <a href="/reservas/nueva">Nueva reserva</a>
+      <a href="/mis-reservas">Mis reservas</a>
+      <% if (usuarioActual.rol === 'admin') { %>
+        <a href="/admin/equipos">Admin equipos</a>
+        <a href="/admin/reservas">Admin reservas</a>
+      <% } %>
+      <a href="/perfil"><%= usuarioActual.nombre %></a>
+      <form action="/logout" method="post" class="en-linea">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+        <button type="submit">Cerrar sesión</button>
+      </form>
+    <% } else { %>
+      <a href="/login">Iniciar sesión</a>
+      <a href="/registro">Registro</a>
+    <% } %>
+  </nav>
+</header>
+<main>
+  <h1><%= titulo %></h1>
+  <%- include('aviso') %>

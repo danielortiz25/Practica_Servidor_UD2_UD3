@@ -1,0 +1,11 @@
+<%# PARCIAL: lista de errores de validación. Recibe "errores" (array) %>
+<% if (errores.length > 0) { %>
+  <div class="errores" role="alert">
+    <p>Revisa los datos enviados:</p>
+    <ul>
+      <% for (const error of errores) { %>
+        <li><%= error %></li>
+      <% } %>
+    </ul>
+  </div>
+<% } %>

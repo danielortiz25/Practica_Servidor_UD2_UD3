@@ -1,0 +1,48 @@
+<%- include('../parciales/cabecera') %>
+
+<form method="get" action="/equipos" class="filtros">
+  <label for="tipo">Tipo</label>
+  <select id="tipo" name="tipo">
+    <option value="todos" <%= tipo === 'todos' ? 'selected' : '' %>>Todos</option>
+    <option value="portatil" <%= tipo === 'portatil' ? 'selected' : '' %>>Portátil</option>
+    <option value="sobremesa" <%= tipo === 'sobremesa' ? 'selected' : '' %>>Sobremesa</option>
+  </select>
+  <label>
+    <input type="checkbox" name="operativos" value="true" <%= operativos ? 'checked' : '' %>>
+    Solo operativos
+  </label>
+  <button type="submit">Filtrar</button>
+</form>
+
+<form method="post" action="/preferencias" class="filtros">
+  <label for="preferencia">Tipo preferido (se guarda en una cookie)</label>
+  <select id="preferencia" name="tipo">
+    <option value="ninguno">Sin preferencia</option>
+    <option value="portatil" <%= preferido === 'portatil' ? 'selected' : '' %>>Portátil</option>
+    <option value="sobremesa" <%= preferido === 'sobremesa' ? 'selected' : '' %>>Sobremesa</option>
+  </select>
+  <button type="submit">Guardar preferencia</button>
+</form>
+
+<% if (equipos.length === 0) { %>
+  <p>No hay equipos con esos filtros.</p>
+<% } else { %>
+  <table>
+    <thead>
+      <tr><th>Código</th><th>Nombre</th><th>Tipo</th><th>Estado</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% for (const equipo of equipos) { %>
+        <tr>
+          <td><%= equipo.codigo %></td>
+          <td><%= equipo.nombre %></td>
+          <td><%= equipo.tipo === 'portatil' ? 'Portátil' : 'Sobremesa' %></td>
+          <td class="<%= equipo.estado %>"><%= equipo.estado === 'operativo' ? 'Operativo' : 'Fuera de servicio' %></td>
+          <td><a href="/equipos/<%= equipo.id %>">Ver ficha</a></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+<% } %>
+
+<%- include('../parciales/pie') %>

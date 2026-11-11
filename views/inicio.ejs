@@ -1,0 +1,12 @@
+<%- include('parciales/cabecera') %>
+<p>Aplicación para reservar los equipos informáticos del centro por fecha y turno.</p>
+<ul>
+  <li><a href="/equipos">Consultar el catálogo de equipos</a></li>
+  <% if (locals.usuarioActual) { %>
+    <li><a href="/reservas/nueva">Hacer una reserva</a></li>
+    <li><a href="/mis-reservas">Ver mis reservas</a></li>
+  <% } else { %>
+    <li><a href="/login">Inicia sesión</a> o <a href="/registro">regístrate</a> para reservar.</li>
+  <% } %>
+</ul>
+<%- include('parciales/pie') %>

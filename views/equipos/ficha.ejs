@@ -1,0 +1,25 @@
+<%- include('../parciales/cabecera') %>
+
+<dl>
+  <dt>Código</dt><dd><%= equipo.codigo %></dd>
+  <dt>Nombre</dt><dd><%= equipo.nombre %></dd>
+  <dt>Tipo</dt><dd><%= equipo.tipo === 'portatil' ? 'Portátil' : 'Sobremesa' %></dd>
+  <dt>Estado</dt><dd class="<%= equipo.estado %>"><%= equipo.estado === 'operativo' ? 'Operativo' : 'Fuera de servicio' %></dd>
+</dl>
+
+<h2>Turnos ya reservados</h2>
+<% if (equipo.estado !== 'operativo') { %>
+  <p>Este equipo está fuera de servicio y no se puede reservar.</p>
+<% } else if (ocupados.length === 0) { %>
+  <p>No tiene reservas próximas: está libre en cualquier fecha y turno.</p>
+<% } else { %>
+  <ul>
+    <% for (const reserva of ocupados) { %>
+      <li><%= reserva.fecha %> · <%= reserva.turno === 'manana' ? 'Mañana' : 'Tarde' %></li>
+    <% } %>
+  </ul>
+  <p>El resto de turnos están libres.</p>
+<% } %>
+
+<p><a href="/equipos">Volver al catálogo</a></p>
+<%- include('../parciales/pie') %>

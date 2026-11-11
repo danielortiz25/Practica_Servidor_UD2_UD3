@@ -1,0 +1,48 @@
+<%- include('../parciales/cabecera') %>
+
+<h2>Añadir equipo</h2>
+<%- include('../parciales/errores', { errores: Object.values(errores) }) %>
+<form method="post" action="/admin/equipos">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <label for="codigo">Código</label>
+  <input id="codigo" name="codigo" value="<%= valores.codigo %>" placeholder="PC-003" required>
+
+  <label for="nombre">Nombre</label>
+  <input id="nombre" name="nombre" value="<%= valores.nombre %>" required>
+
+  <label for="tipo">Tipo</label>
+  <select id="tipo" name="tipo" required>
+    <option value="">Selecciona un tipo</option>
+    <option value="portatil" <%= valores.tipo === 'portatil' ? 'selected' : '' %>>Portátil</option>
+    <option value="sobremesa" <%= valores.tipo === 'sobremesa' ? 'selected' : '' %>>Sobremesa</option>
+  </select>
+  <button type="submit">Añadir</button>
+</form>
+
+<h2>Equipos</h2>
+<table>
+  <thead>
+    <tr><th>Código</th><th>Nombre</th><th>Tipo</th><th>Estado</th><th>Cambiar estado</th></tr>
+  </thead>
+  <tbody>
+    <% for (const equipo of equipos) { %>
+      <tr>
+        <td><%= equipo.codigo %></td>
+        <td><%= equipo.nombre %></td>
+        <td><%= equipo.tipo === 'portatil' ? 'Portátil' : 'Sobremesa' %></td>
+        <td class="<%= equipo.estado %>"><%= equipo.estado === 'operativo' ? 'Operativo' : 'Fuera de servicio' %></td>
+        <td>
+          <form method="post" action="/admin/equipos/<%= equipo.id %>/estado" class="en-linea">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <select name="estado">
+              <option value="operativo" <%= equipo.estado === 'operativo' ? 'selected' : '' %>>Operativo</option>
+              <option value="fuera_de_servicio" <%= equipo.estado === 'fuera_de_servicio' ? 'selected' : '' %>>Fuera de servicio</option>
+            </select>
+            <button type="submit">Guardar</button>
+          </form>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+<%- include('../parciales/pie') %>

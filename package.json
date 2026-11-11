@@ -1,29 +1,38 @@
 {
   "name": "practica_servidor_ud2_ud3",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Sistema de reserva de equipos informáticos - DWES UD2 y UD3",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "node --watch src/server.js",
+    "start": "node --env-file=.env src/server.js",
+    "dev": "node --watch --env-file=.env src/server.js",
     "test": "vitest run",
-    "build:ts": "tsc -p ts"
+    "build:ts": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielortiz25/Practica_Servidor_UD2_UD3.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Daniel Ortiz Jiménez",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielortiz25/Practica_Servidor_UD2_UD3/issues"
+  },
+  "homepage": "https://github.com/danielortiz25/Practica_Servidor_UD2_UD3#readme",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "dotenv": "^16.4.5",
-    "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "express-rate-limit": "^7.4.0",
-    "express-session": "^1.18.1"
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^7.0.2",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.3",
+    "express-session": "^1.19.0"
   },
   "devDependencies": {
-    "supertest": "^7.0.0",
-    "typescript": "^5.6.3",
-    "vitest": "^2.1.4"
+    "@types/node": "^24.0.0",
+    "supertest": "^7.3.2",
+    "typescript": "~5.9.3",
+    "vitest": "^5.1.0"
   }
 }

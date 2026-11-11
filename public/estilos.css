@@ -1,0 +1,21 @@
+body { font-family: system-ui, sans-serif; margin: 0; color: #222; background: #f6f7f9; }
+header { background: #1f3a5f; }
+nav { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; padding: .75rem 1.5rem; }
+nav a { color: #fff; text-decoration: none; }
+nav .marca { font-weight: bold; margin-right: auto; }
+nav button { background: transparent; color: #fff; border: 1px solid #fff; }
+main { max-width: 960px; margin: 1.5rem auto; padding: 0 1.5rem; }
+footer { text-align: center; color: #777; padding: 2rem 0; font-size: .9rem; }
+form { display: grid; gap: .4rem; max-width: 420px; margin-bottom: 1.5rem; }
+form.filtros { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; max-width: none; }
+form.en-linea { display: inline-flex; gap: .4rem; margin: 0; max-width: none; }
+input, select, button { font: inherit; padding: .35rem .5rem; }
+button { cursor: pointer; border: 1px solid #1f3a5f; background: #1f3a5f; color: #fff; border-radius: 4px; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { text-align: left; padding: .5rem; border-bottom: 1px solid #ddd; }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: .3rem 1rem; }
+dt { font-weight: bold; }
+.aviso { background: #e3f4e6; border: 1px solid #7bbf87; padding: .6rem; }
+.error, .errores { background: #fbe7e7; border: 1px solid #d88; padding: .6rem; }
+.operativo, .activa { color: #1e7a34; }
+.fuera_de_servicio, .cancelada { color: #a33; }
