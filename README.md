@@ -1,5 +1,7 @@
 # Práctica UD2 y UD3 – Sistema de reserva de equipos informáticos (DWES)
 
+Chat con Claude : https://claude.ai/share/af71aabc-d83b-4a71-aa18-ac3369a9ef10
+
 Aplicación web con **Node.js, Express y EJS** para reservar los equipos informáticos de un centro educativo por fecha y turno. Incluye registro e inicio de sesión, gestión de reservas, zona de administración, protección CSRF, límite de intentos de login, una parte en **TypeScript** y pruebas con **Vitest + Supertest**.
 
 Autor: Daniel Ortiz Jiménez
